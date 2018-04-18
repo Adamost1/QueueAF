@@ -6,10 +6,10 @@
 ## Methods to implement:
 * void addFirst(String s)
 * void addLast(String s)
-* String peekFirst()
-* String peekLast()
 * String pollFirst()
 * String pollLast()
+* String peekFirst()
+* String peekLast()
 * int size()
 * boolean isEmpty()
 
