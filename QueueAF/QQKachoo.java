@@ -19,16 +19,20 @@ public class QQKachoo<T> implements Deque<T>{
     /*
     * Adds a new node containing the T argument as its cargo to the front of the deque.
     * If the list is empty, set the pointer variables (_front, _back) to the new node.
-    * Otherwise, insert the node, having it point forwards to _front. Set _front to point backwards to the new _nextNode
+    * Otherwise, insert the node, having it point backwards to _front. Set _front to point forwards to the new node
+    * Then assign variable _front to this new node.
     * Runtime: O(1)
     */
     public void addFirst(T s){
-        //initialize a new node newNode, having it point forwards to _front
+        //initialize a new node newNode, having it point backwards to _front
         DLLNode<T> tmp  = new DLLNode<T>(s, null, _front);
 
+        if (s.equals(null)) {
+          throw new NullPointerException();
+        }
         //If list is empty, initialize the first node.
 	      //Both head and tail need to be set to this node
-        if(_size == 0){
+        else if(_size == 0){
             _back = tmp; //makes _back equal to the same node as _front
         }
 
@@ -40,10 +44,24 @@ public class QQKachoo<T> implements Deque<T>{
         _size++; //increment _size by one
     }
 
-    public void addLast(T s){ //[O(1) runtime]
-        DLLNode<T> tmp = new DLLNode<T>(s, _back, null); //makes tmp point backwards to _back
+    /*
+    * Adds a new node containing the T argument as its cargo to the back of the deque.
+    * If the list is empty, set the pointer variables (_front, _back) to the new node.
+    * Otherwise, insert the node, having it point forwards to _back. Set _back to point backwards to this new node
+    * Then assign variable _back to this new node.
+    * Runtime O(1)
+    *
+    * Throws a NullPointerException if asked to add a null element to the deque, in accordance with the api.
+    */
+    public void addLast(T s){
+        //initialize a new node newNode, having it point forwards to _back
+        DLLNode<T> tmp = new DLLNode<T>(s, _back, null);
 
-        if(_size == 0){ //if size is 0, you need to make _front point to the same new node as _back
+        if (s.equals(null)) {
+          throw new NullPointerException();
+        }
+
+        else if(_size == 0){ //if size is 0, you need to make _front point to the same new node as _back
             _front = tmp; //makes _front also equal to _back
         }
 
@@ -152,10 +170,6 @@ public class QQKachoo<T> implements Deque<T>{
         q.addLast("200");
         System.out.println(q);
         System.out.println("Front value: " + q.peekFirst() + "\n" + "Back value: " + q.peekLast());
-
-        for (String s : q){
-          System.out.println(s);
-        }
 
 	System.out.println();
 
