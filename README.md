@@ -14,6 +14,8 @@
 * boolean isEmpty()
 * boolean contains(String s)
 
+* Enabled generic typing for Deque
+
 ## Future Methods to implement:
 * implement the use of Iterator
 
