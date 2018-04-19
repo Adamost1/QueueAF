@@ -4,9 +4,9 @@ APCS2 - pd08
 L #02: All Hands on Deque! (Not Schenectady; rather, synecdoche.)
 2018 - 04 - 18
 */
-public class QQKachoo implements Deque{
+public class QQKachoo<T> implements Deque<T>{
 
-    private DLLNode<String> _front, _back;
+    private DLLNode<T> _front, _back;
     private int _size;
 
     //Constructor, initialize variables
@@ -17,14 +17,14 @@ public class QQKachoo implements Deque{
     }
 
     /*
-    * Adds a new node containing the string argument as its cargo to the front of the deque.
+    * Adds a new node containing the T argument as its cargo to the front of the deque.
     * If the list is empty, set the pointer variables (_front, _back) to the new node.
     * Otherwise, insert the node, having it point forwards to _front. Set _front to point backwards to the new _nextNode
     * Runtime: O(1)
     */
-    public void addFirst(String s){
+    public void addFirst(T s){
         //initialize a new node newNode, having it point forwards to _front
-        DLLNode<String> tmp  = new DLLNode<String>(s, null, _front);
+        DLLNode<T> tmp  = new DLLNode<T>(s, null, _front);
 
         //If list is empty, initialize the first node.
 	      //Both head and tail need to be set to this node
@@ -40,8 +40,8 @@ public class QQKachoo implements Deque{
         _size++; //increment _size by one
     }
 
-    public void addLast(String s){ //[O(1) runtime]
-        DLLNode<String> tmp = new DLLNode<String>(s, _back, null); //makes tmp point backwards to _back
+    public void addLast(T s){ //[O(1) runtime]
+        DLLNode<T> tmp = new DLLNode<T>(s, _back, null); //makes tmp point backwards to _back
 
         if(_size == 0){ //if size is 0, you need to make _front point to the same new node as _back
             _front = tmp; //makes _front also equal to _back
@@ -57,34 +57,34 @@ public class QQKachoo implements Deque{
     }
 
 
-    public String pollFirst(){ //[O(1) runtime]
+    public T pollFirst(){ //[O(1) runtime]
 
         if(isEmpty()){
             return null;
         }
-        
+
         else{
-            String retVal = _front.getCargo();
+            T retVal = _front.getCargo();
             _front = _front.getNext();
             return retVal;
         }
     }
 
-    public String pollLast(){ //[O(1) runtime]
+    public T pollLast(){ //[O(1) runtime]
         if(isEmpty()){
             return null;
         }
         else{
-            String retVal = _back.getCargo();
+            T retVal = _back.getCargo();
             _back = _back.getPrev();
             return retVal;
         }
     }
 
-    public String peekFirst(){ //[O(1) runtime]
+    public T peekFirst(){ //[O(1) runtime]
         return _front.getCargo();
     }
-    public String peekLast(){ //[O(1) runtime]
+    public T peekLast(){ //[O(1) runtime]
         return _back.getCargo();
     }
     public int size(){ //[O(1) runtime]
@@ -98,7 +98,7 @@ public class QQKachoo implements Deque{
 
     public String toString(){
 	     String retStr = "Front|| ";
-	     DLLNode<String> tmp = _front;
+	     DLLNode<T> tmp = _front;
 	      while( tmp != _back.getNext() ) {
 	         retStr += tmp.getCargo() + " <-> ";
 	         tmp = tmp.getNext();
@@ -108,7 +108,7 @@ public class QQKachoo implements Deque{
     }
 
 
-    public boolean contains(String s){ //Starting the contains() method... [O(n) runtime]
+    public boolean contains(T s){ //Starting the contains() method... [O(n) runtime]
 
       //An empty deque cannot contain the element "s"
 	     if ( isEmpty() ) {
@@ -116,7 +116,11 @@ public class QQKachoo implements Deque{
        }
 	     else { //If there is more than one element in the deque
 	        DLLNode temp = _front; //Set a temp DLLNode at the front
-	        while ( !temp.equals(null) ) { //And while temp isn't at the back yet
+	        while ( !temp.equals(_back) ) {
+            //Debugging
+            //System.out.println(temp + " : " + _front);
+
+            //And while temp isn't at the back yet
 		        if ( temp.getCargo().equals(s) ) {
               return true;
             } //If the cargo at temp equals s, return true
@@ -129,9 +133,9 @@ public class QQKachoo implements Deque{
 	       } // exit your else case
     } //And you're done with contains()!
 
-
     public static void main(String[] args){
-        QQKachoo q = new QQKachoo();
+        QQKachoo<String> q = new QQKachoo<String>();
+
         System.out.println("adding 1 to front: ");
         q.addFirst("1");
         System.out.println(q);
@@ -148,6 +152,10 @@ public class QQKachoo implements Deque{
         q.addLast("200");
         System.out.println(q);
         System.out.println("Front value: " + q.peekFirst() + "\n" + "Back value: " + q.peekLast());
+
+        for (String s : q){
+          System.out.println(s);
+        }
 
 	System.out.println();
 
