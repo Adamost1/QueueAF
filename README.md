@@ -2,7 +2,7 @@
 ### Ryan Kim, Joshua Weiner, Alvin Ye
 
 * Background of DEQue is a DLList, because it is easier to visualize, especially using front and back pointers. When we draw diagrams it would be easier to follow than if we were to use ArrayList
-* We chose to not throw capacity exceptions (see: [a link](https://docs.oracle.com/javase/7/docs/api/java/lang/IllegalStateException.html)) because we configured our deque to not have said capacity limitations.
+* We chose to not throw capacity exceptions (see: [IllegalStateException](https://docs.oracle.com/javase/7/docs/api/java/lang/IllegalStateException.html)) because we configured our deque to not have said capacity limitations.
 
 ## Methods implemented:
 * void addFirst(T s)
