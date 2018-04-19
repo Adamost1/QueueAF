@@ -1,3 +1,9 @@
+/*
+Q(ueue)AF - Ryan Kim, Joshua Weiner, Alvin Ye
+APCS2 - pd08
+L #02: All Hands on Deque! (Not Schenectady; rather, synecdoche.)
+2018 - 04 - 18
+*/
 public class QQKachoo implements Deque{
 
     private DLLNode<String> _front, _back;
