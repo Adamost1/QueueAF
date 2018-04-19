@@ -42,25 +42,27 @@ public class QQKachoo implements Deque{
 
     public void addLast(String s){ //[O(1) runtime]
         DLLNode<String> tmp = new DLLNode<String>(s, _back, null); //makes tmp point backwards to _back
+
         if(_size == 0){ //if size is 0, you need to make _front point to the same new node as _back
-            _back = tmp; //makes tmp the new _back
             _front = tmp; //makes _front also equal to _back
         }
-        else{
-            DLLNode<String> tmp = new DLLNode<String>(s, _back, null); //makes tmp point backwards to _back
+
+        else {
             _back.setNext(tmp); //makes _back point forwards to tmp
-            _back = tmp; //makes tmp the new _back
         }
 
+        _back = tmp; //makes tmp the new _back
         //Increment size by one
         _size++;
     }
 
 
     public String pollFirst(){ //[O(1) runtime]
+
         if(isEmpty()){
             return null;
         }
+        
         else{
             String retVal = _front.getCargo();
             _front = _front.getNext();
