@@ -79,7 +79,13 @@ public class QQKachoo<T> implements Deque<T>{
         _size++;
     }
 
-
+    /*
+    * Removes and returns the contents of the first node, _front.
+    * If the list is empty, return null.
+    * Otherwise, remove the node, set _front to point to the next node in the deque.
+    *
+    * Runtime: O(1)
+    */
     public T pollFirst(){ //[O(1) runtime]
 
         if(isEmpty()){
@@ -93,7 +99,14 @@ public class QQKachoo<T> implements Deque<T>{
         }
     }
 
-    public T pollLast(){ //[O(1) runtime]
+    /*
+    * Removes and returns the contents of the last node, _back.
+    * If the list is empty, return null.
+    * Otherwise, remove the node, set _back to point to the previous node in the deque.
+    *
+    * Runtime: O(1)
+    */
+    public T pollLast(){
         if(isEmpty()){
             return null;
         }
@@ -104,11 +117,28 @@ public class QQKachoo<T> implements Deque<T>{
         }
     }
 
-    public T peekFirst(){ //[O(1) runtime]
+    /*
+    * Returns the cargo of the first (_front) node of the deque
+    * Returns null if deque is Empty
+    *
+    * Runtime: O(1)
+    */
+    public T peekFirst(){
+        if (isEmpty())
+          return null;
         return _front.getCargo();
     }
-    public T peekLast(){ //[O(1) runtime]
-        return _back.getCargo();
+
+    /*
+    * Returns the cargo of the last node (_back) of the deque
+    * Returns null if deque is Empty
+    *
+    * Runtime: O(1)
+    */
+    public T peekLast(){
+      if (isEmpty())
+        return null;
+      return _back.getCargo();
     }
     public int size(){ //[O(1) runtime]
         return _size;
@@ -160,7 +190,7 @@ public class QQKachoo<T> implements Deque<T>{
         QQKachoo<String> q = new QQKachoo<String>();
 
         System.out.println("adding 1 to front: ");
-        q.addFirst(1);
+        q.addFirst("1");
         System.out.println(q);
        	System.out.println("adding 2 to back: ");
         q.addLast("2");
