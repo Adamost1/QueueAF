@@ -22,20 +22,46 @@ Otherwise, insert the node, having it point forwards to back. Set back to point 
 Throws a NullPointerException if asked to add a null element to the deque, in accordance with the API. <br>
 Runtime: O(1)
 * ```String pollFirst()``` <br>
-Adds a new node containing the T argument as its cargo to the back of the deque.
-If the list is empty, set the pointer variables (front, back) to the new node.
-Otherwise, insert the node, having it point forwards to back. Set back to point backwards to this new node
-Then assign variable back to this new node.
-Throws a NullPointerException if asked to add a null element to the deque, in accordance with the api.<br>
+Removes and returns the contents of the first node, front.
+If the list is empty, return null.
+Otherwise, remove the node, set front to point to the next node in the deque. <br>
 Runtime: O(1)
-* ```String pollLast()```
-* ```String peekFirst()```
-* ```String peekLast()```
-* ```boolean removeFirstOccurrence(T s)```
-* ```boolean removeLastOccurrence(T s)```
-* ```int size()```
-* ```boolean isEmpty()```
-* ```boolean contains(T s)```
+* ```String pollLast()``` <br>
+Removes and returns the contents of the last node, back.
+If the list is empty, return null.
+Otherwise, remove the node, set back to point to the previous node in the deque. <br>
+Runtime: O(1)
+* ```String peekFirst()``` <br>
+Returns the cargo of the first (front) node of the deque.
+Returns null if deque is Empty. <br>
+Runtime: O(1)
+* ```String peekLast()``` <br>
+Returns the cargo of the first (back) node of the deque.
+Returns null if deque is Empty. <br>
+Runtime: O(1)
+* ```boolean removeFirstOccurrence(T s)``` <br>
+If given argument is null, throw a NullPointerException in accordance with the API.
+If the deque is empty, return false.
+Temporary node is set to front.
+Otherwise, iterate forwards through the list, and if the cargo of the temporary node is equal to the given argument, remove that node and return false.
+If the list is fully iterated through, return false. <br>
+Runtime: O(n)
+* ```boolean removeLastOccurrence(T s)``` <br>
+If given argument is null, throw a NullPointerException in accordance with the API.
+If the deque is empty, return back.
+Temporary node is set to front.
+Otherwise, iterate backwards through the list, and if the cargo of the temporary node is equal to the given argument, remove that node and return false.
+If the list is fully iterated through, return false. <br>
+Runtime: O(n)
+* ```int size()``` <br>
+Returns the size (as an integer) of the deque. <br>
+Runtime: O(1)
+* ```boolean isEmpty()``` <br>
+Returns a boolean value of whether or not the the deque is empty. <br>
+Runtime: O(1)
+* ```boolean contains(T s)``` <br>
+If deque is empty, return false. If given argument is a null element, throw a NullPointerException in accordance with the API. Otherwise, iterates through the list, and checks if the cargo of each element is equal to the argument. If the cargo of one element is equal, returns true. If the deque does not contain the element, returns false. <br>
+Runtime: O(n)
 * added comments and descriptions of algorithms
 * eliminate repetitions in code
 * Enabled generic typing for Deque

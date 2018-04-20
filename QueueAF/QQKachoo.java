@@ -164,32 +164,47 @@ public class QQKachoo<T> implements Deque<T>{
         return _size == 0;
     }
 
+    /*
+    * If deque is empty, return false.
+    * If given argument is a null element, throw a NullPointerException in accordance with the API.
+    * Otherwise, iterates through the list, and checks if the cargo of each element is equal to the argument. If the cargo of one element is equal, returns true.
+    * If the deque does not contain the element, returns false.
+    *
+    * Runtime: O(n)
+    */
+    public boolean contains(T s){
+      if (s.equals(null))
+        throw new NullPointerException();
 
-    public boolean contains(T s){ //Starting the contains() method... [O(n) runtime]
-
-      //An empty deque cannot contain the element "s"
-	     if ( isEmpty() ) {
+	     else if ( isEmpty() ) {
          return false;
        }
-	     else { //If there is more than one element in the deque
-	        DLLNode<T> temp = _front; //Set a temp DLLNode at the front
+	     else {
+	        DLLNode<T> temp = _front;
 	        while ( !temp.equals(_back) ) {
             //Debugging
             //System.out.println(temp + " : " + _front);
-
-            //And while temp isn't at the back yet
 		        if ( temp.getCargo().equals(s) ) {
               return true;
-            } //If the cargo at temp equals s, return true
+            }
 		        else {
               temp = temp.getNext();
-            } //If the cargo at temp doesn't equal s, move temp up to the next DLLNode
-	        } //If temp reaches the back but you have not found s in any DLLNode
+            }
+	        }
 
-          return false; //Then s is not present in the deque!
-	       } // exit your else case
-    } //And you're done with contains()!
+          return false;
+	       }
+    }
 
+    /*
+    * If given argument is null, throw a NullPointerException in accordance with the API.
+    * If the deque is empty, return false.
+    * Temporary node is set to _front.
+    * Otherwise, iterate forwards through the list, and if the cargo of the temporary node is equal to the given argument, remove that node and return false.
+    * If the list is fully iterated through, return false.
+    *
+    * Runtime: O(n)
+    */
     public boolean removeFirstOccurrence(T o) {
       DLLNode<T> temp = _front;
       if (o.equals(null))
@@ -225,6 +240,15 @@ public class QQKachoo<T> implements Deque<T>{
     return false;
     }
 
+    /*
+    * If given argument is null, throw a NullPointerException in accordance with the API.
+    * If the deque is empty, return false.
+    * Temporary node is set to _back.
+    * Otherwise, iterate backwards through the list, and if the cargo of the temporary node is equal to the given argument, remove and that node and return false.
+    * If the list is fully iterated through, return false.
+    *
+    * Runtime: O(n)
+    */
     public boolean removeLastOccurrence(T o) {
       boolean retVal = false;
       DLLNode<T> temp = _back;
