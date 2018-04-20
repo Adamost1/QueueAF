@@ -29,14 +29,14 @@ public class QQKachoo<T> implements Deque<T>{
         //initialize a new node newNode, having it point backwards to _front
         DLLNode<T> tmp  = new DLLNode<T>(s, null, _front);
 
-        //No null elements shall be added to our deque
+        //No null elements shall be added to our deque, throws error
         if (s.equals(null)) {
           throw new NullPointerException();
         }
 
         //If list is empty, initialize the first node.
 	      //Both head and tail need to be set to this node
-        else if(_size == 0){
+        else if(isEmpty()){
             _back = tmp; //makes _back equal to the same node as _front
         }
 
@@ -61,12 +61,14 @@ public class QQKachoo<T> implements Deque<T>{
         //initialize a new node newNode, having it point forwards to _back
         DLLNode<T> tmp = new DLLNode<T>(s, _back, null);
 
-        //No null elements shall be added to our deque
+        //No null elements shall be added to our deque, throws error
         if (s.equals(null)) {
           throw new NullPointerException();
         }
 
-        else if(_size == 0){ //if size is 0, you need to make _front point to the same new node as _back
+        //If list is empty, initialize the first node.
+	      //Both head and tail need to be set to this node
+        else if(isEmpty()){
             _front = tmp; //makes _front also equal to _back
         }
 
@@ -74,7 +76,7 @@ public class QQKachoo<T> implements Deque<T>{
             _back.setNext(tmp); //makes _back point forwards to tmp
         }
 
-        _back = tmp; //makes tmp the new _back
+        _back = tmp; //makes _back equal to the same node as _front
         //Increment size by one
         _size++;
     }
@@ -140,11 +142,22 @@ public class QQKachoo<T> implements Deque<T>{
         return null;
       return _back.getCargo();
     }
-    public int size(){ //[O(1) runtime]
+
+    /*
+    * Returns the size (as an integer) of the deque
+    *
+    * Runtime: O(1)
+    */
+    public int size(){
         return _size;
     }
 
-    public boolean isEmpty(){ //[O(1) runtime]
+    /*
+    * Returns a boolean value of whether or not the the deque is empty
+    *
+    * Runtime: O(1)
+    */
+    public boolean isEmpty(){
         return _size == 0;
     }
 

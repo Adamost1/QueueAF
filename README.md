@@ -13,8 +13,8 @@ At first, we implemented this all without generic typing in order to incremental
 * ```void addLast(T s)```
 * ```String pollFirst()```
 * ```String pollLast()```
-* ```String getFirst()```
-* ```String getLast()```
+* ```String peekFirst()```
+* ```String peekLast()```
 * ```int size()```
 * ```boolean isEmpty()```
 * ```boolean contains(T s)```
