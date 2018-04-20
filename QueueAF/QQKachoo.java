@@ -161,7 +161,10 @@ public class QQKachoo<T> implements Deque<T>{
         return _size == 0;
     }
 
-
+    /* Returns a string visual of the deque, with markers for _front and _back included, and linkages between nodes shown
+    *
+    * Runtime: O(n)
+    */
     public String toString(){
 	     String retStr = "Front|| ";
 	     DLLNode<T> tmp = _front;
@@ -209,9 +212,9 @@ public class QQKachoo<T> implements Deque<T>{
         q.addLast("2");
         System.out.println(q);
 
-	System.out.println();
+	       System.out.println();
 
-	System.out.println("adding 100 to front: ");
+	      System.out.println("adding 100 to front: ");
         q.addFirst("100");
         System.out.println(q);
        	System.out.println("adding 200 to back: ");
@@ -219,15 +222,15 @@ public class QQKachoo<T> implements Deque<T>{
         System.out.println(q);
         System.out.println("Front value: " + q.peekFirst() + "\n" + "Back value: " + q.peekLast());
 
-	System.out.println();
+      	System.out.println();
 
-	System.out.println(q);
-	System.out.print( "Contains 10? " ) ;
-	System.out.println( q.contains("10") ) ;
-	System.out.print( "Contains 100? " ) ;
-	System.out.println( q.contains("100") ) ;
+      	System.out.println(q);
+      	System.out.print( "Contains 10? " ) ;
+      	System.out.println( q.contains("10") ) ;
+      	System.out.print( "Contains 100? " ) ;
+      	System.out.println( q.contains("100") ) ;
 
-	System.out.println();
+      	System.out.println();
 
         System.out.println( "polling first: " + q.pollFirst()) ;
         System.out.println(q);
@@ -238,7 +241,7 @@ public class QQKachoo<T> implements Deque<T>{
         System.out.println( "polling last: " + q.pollLast()) ;
         System.out.println(q);
 
-	System.out.println( "polling last: " + q.pollLast()) ;
+	      System.out.println( "polling last: " + q.pollLast()) ;
         System.out.println(q);
 
 
