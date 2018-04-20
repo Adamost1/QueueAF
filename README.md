@@ -9,18 +9,27 @@ At first, we implemented this all without generic typing in order to incremental
 * We also chose not to implement methods that throw NoSuchElementExceptions because we then had to import the java utils in order to throw them, methods that returned null such as ```peekFirst()``` and ```peekLast()``` were much easier to implement and serviced effectively the same function.
 
 ## Methods implemented & tasks completed:
-* ```void addFirst(T s)```
-* ```void addLast(T s)```
-* ```String pollFirst()```
-* ```String pollLast()```
-* ```String peekFirst()```
-* ```String peekLast()```
-* ```int size()```
-* ```boolean isEmpty()```
-* ```boolean contains(T s)```
-
-* Enabled generic typing for Deque
-
-## Other things to do:
-* add comments and descriptions of algorithms
-* eliminate repetitions in code
+###```void addFirst(T s)```
+* Adds a new node containing the T argument as its cargo to the front of the deque.
+* If the list is empty, set the pointer variables (front & back) to the new node.
+* Otherwise, insert the node, having it point backwards to front. Set front to point to the new node, then assign variable front to this new node.
+* Throws a NullPointerException if asked to add a null element to the deque, in accordance with the API.
+* Runtime: O(1)
+###```void addLast(T s)```
+* Adds a new node containing the T argument as its cargo to the back of the deque.
+* If the list is empty, set the pointer variables (front & back) to the new node.
+* Otherwise, insert the node, having it point forwards to back. Set back to point to the new node, then assign variable back to this new node.
+* Throws a NullPointerException if asked to add a null element to the deque, in accordance with the API.
+* Runtime: O(1)
+###```String pollFirst()```
+###```String pollLast()```
+###```String peekFirst()```
+###```String peekLast()```
+###```boolean removeFirstOccurrence(T s)```
+###```boolean removeLastOccurrence(T s)```
+###```int size()```
+###```boolean isEmpty()```
+###```boolean contains(T s)```
+### added comments and descriptions of algorithms
+### eliminate repetitions in code
+### Enabled generic typing for Deque

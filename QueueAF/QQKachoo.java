@@ -89,6 +89,7 @@ public class QQKachoo<T> implements Deque<T>{
     * Runtime: O(1)
     */
     public T pollFirst(){ //[O(1) runtime]
+        _size --;
 
         if(isEmpty()){
             return null;
@@ -109,6 +110,8 @@ public class QQKachoo<T> implements Deque<T>{
     * Runtime: O(1)
     */
     public T pollLast(){
+        _size --;
+
         if(isEmpty()){
             return null;
         }
@@ -161,21 +164,6 @@ public class QQKachoo<T> implements Deque<T>{
         return _size == 0;
     }
 
-    /* Returns a string visual of the deque, with markers for _front and _back included, and linkages between nodes shown
-    *
-    * Runtime: O(n)
-    */
-    public String toString(){
-	     String retStr = "Front|| ";
-	     DLLNode<T> tmp = _front;
-	      while( tmp != _back.getNext() ) {
-	         retStr += tmp.getCargo() + " <-> ";
-	         tmp = tmp.getNext();
-	      }
-	      retStr = retStr.substring(0, retStr.length() - 4) + " ||Back";
-	      return retStr;
-    }
-
 
     public boolean contains(T s){ //Starting the contains() method... [O(n) runtime]
 
@@ -184,7 +172,7 @@ public class QQKachoo<T> implements Deque<T>{
          return false;
        }
 	     else { //If there is more than one element in the deque
-	        DLLNode temp = _front; //Set a temp DLLNode at the front
+	        DLLNode<T> temp = _front; //Set a temp DLLNode at the front
 	        while ( !temp.equals(_back) ) {
             //Debugging
             //System.out.println(temp + " : " + _front);
@@ -201,6 +189,92 @@ public class QQKachoo<T> implements Deque<T>{
           return false; //Then s is not present in the deque!
 	       } // exit your else case
     } //And you're done with contains()!
+
+    public boolean removeFirstOccurrence(T o) {
+      DLLNode<T> temp = _front;
+      if (o.equals(null))
+        throw new NullPointerException();
+      while (!temp.equals(null)) {
+
+        if (temp.getCargo().equals(o)) {
+
+          if (temp.equals(_front)) {
+            _front = temp.getNext();
+            temp.getNext().setPrev(null);
+          }
+
+          else if (temp.equals(_back)) {
+            _back = temp.getPrev();
+            temp.getPrev().setNext(null);
+          }
+
+          else {
+            temp.getNext().setPrev(temp.getPrev());
+            temp.getPrev().setNext(temp.getNext());
+          }
+
+          return true;
+
+        }
+
+        else {
+          temp = temp.getNext();
+        }
+    }
+    _size --;
+    return false;
+    }
+
+    public boolean removeLastOccurrence(T o) {
+      boolean retVal = false;
+      DLLNode<T> temp = _back;
+      if (o.equals(null))
+        throw new NullPointerException();
+      while (!temp.equals(null)) {
+
+        if (temp.getCargo().equals(o)) {
+          retVal = true;
+
+          if (temp.equals(_front)) {
+            _front = temp.getNext();
+            temp.getNext().setPrev(null);
+          }
+
+          else if (temp.equals(_back)) {
+            _back = temp.getPrev();
+            temp.getPrev().setNext(null);
+          }
+
+          else {
+            temp.getNext().setPrev(temp.getPrev());
+            temp.getPrev().setNext(temp.getNext());
+          }
+          break;
+        }
+
+        else {
+          temp = temp.getPrev();
+        }
+    }
+    _size --;
+    return retVal;
+    }
+
+    /* Returns a string visual of the deque, with markers for _front and _back included, and linkages between nodes shown
+    *
+    * Runtime: O(n)
+    */
+    public String toString(){
+	    String retStr = "Front|| ";
+	    DLLNode<T> tmp = _front;
+      int count = 0;
+      while( tmp != _back.getNext() ) {
+        retStr += tmp.getCargo() + " <-> ";
+        tmp = tmp.getNext();
+      }
+      return retStr.substring(0, retStr.length() - 3) + "|| Back";
+
+    }
 
     public static void main(String[] args){
         QQKachoo<String> q = new QQKachoo<String>();
@@ -219,6 +293,8 @@ public class QQKachoo<T> implements Deque<T>{
         System.out.println(q);
        	System.out.println("adding 200 to back: ");
         q.addLast("200");
+        System.out.println("adding 2 to back: ");
+        q.addLast("2");
         System.out.println(q);
         System.out.println("Front value: " + q.peekFirst() + "\n" + "Back value: " + q.peekLast());
 
@@ -232,6 +308,14 @@ public class QQKachoo<T> implements Deque<T>{
 
       	System.out.println();
 
+        System.out.println(q);
+
+        System.out.println("removing First occurance: " + q.removeFirstOccurrence("2"));
+        System.out.println(q);
+
+        System.out.println("removing Last occurance: " + q.removeLastOccurrence("100"));
+        System.out.println(q);
+
         System.out.println( "polling first: " + q.pollFirst()) ;
         System.out.println(q);
 
@@ -243,8 +327,5 @@ public class QQKachoo<T> implements Deque<T>{
 
 	      System.out.println( "polling last: " + q.pollLast()) ;
         System.out.println(q);
-
-
-
-    }
+      }
 }
