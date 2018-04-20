@@ -201,6 +201,8 @@ public class QQKachoo<T> implements Deque<T>{
     * If the deque is empty, return false.
     * Temporary node is set to _front.
     * Otherwise, iterate forwards through the list, and if the cargo of the temporary node is equal to the given argument, remove that node and return false.
+    * If the node to remove is _front, only set the next node's forwards pointer to null. Set _front to the next node.
+    * If the node to remove is _back, only set the previous node's backwards pointer to null. Set _back to the next node.
     * If the list is fully iterated through, return false.
     *
     * Runtime: O(n)
@@ -245,6 +247,8 @@ public class QQKachoo<T> implements Deque<T>{
     * If the deque is empty, return false.
     * Temporary node is set to _back.
     * Otherwise, iterate backwards through the list, and if the cargo of the temporary node is equal to the given argument, remove and that node and return false.
+    * If the node to remove is _front, only set the next node's forwards pointer to null. Set _front to the next node.
+    * If the node to remove is _back, only set the previous node's backwards pointer to null. Set _back to the next node.
     * If the list is fully iterated through, return false.
     *
     * Runtime: O(n)

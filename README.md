@@ -44,6 +44,8 @@ If given argument is null, throw a NullPointerException in accordance with the A
 If the deque is empty, return false.
 Temporary node is set to front.
 Otherwise, iterate forwards through the list, and if the cargo of the temporary node is equal to the given argument, remove that node and return false.
+If the node to remove is front, only set the next node's forwards pointer to null. Set front to the next node.
+If the node to remove is back, only set the previous node's backwards pointer to null. Set back to the next node.
 If the list is fully iterated through, return false. <br>
 Runtime: O(n)
 * ```boolean removeLastOccurrence(T s)``` <br>
@@ -51,6 +53,8 @@ If given argument is null, throw a NullPointerException in accordance with the A
 If the deque is empty, return back.
 Temporary node is set to front.
 Otherwise, iterate backwards through the list, and if the cargo of the temporary node is equal to the given argument, remove that node and return false.
+If the node to remove is front, only set the next node's forwards pointer to null. Set front to the next node.
+If the node to remove is back, only set the previous node's backwards pointer to null. Set back to the next node.
 If the list is fully iterated through, return false. <br>
 Runtime: O(n)
 * ```int size()``` <br>
