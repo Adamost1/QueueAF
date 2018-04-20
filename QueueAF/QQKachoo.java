@@ -21,15 +21,19 @@ public class QQKachoo<T> implements Deque<T>{
     * If the list is empty, set the pointer variables (_front, _back) to the new node.
     * Otherwise, insert the node, having it point backwards to _front. Set _front to point forwards to the new node
     * Then assign variable _front to this new node.
+    *
+    * Throws a NullPointerException if asked to add a null element to the deque, in accordance with the api.
     * Runtime: O(1)
     */
     public void addFirst(T s){
         //initialize a new node newNode, having it point backwards to _front
         DLLNode<T> tmp  = new DLLNode<T>(s, null, _front);
 
+        //No null elements shall be added to our deque
         if (s.equals(null)) {
           throw new NullPointerException();
         }
+
         //If list is empty, initialize the first node.
 	      //Both head and tail need to be set to this node
         else if(_size == 0){
@@ -49,14 +53,15 @@ public class QQKachoo<T> implements Deque<T>{
     * If the list is empty, set the pointer variables (_front, _back) to the new node.
     * Otherwise, insert the node, having it point forwards to _back. Set _back to point backwards to this new node
     * Then assign variable _back to this new node.
-    * Runtime O(1)
     *
     * Throws a NullPointerException if asked to add a null element to the deque, in accordance with the api.
+    * Runtime: O(1)
     */
     public void addLast(T s){
         //initialize a new node newNode, having it point forwards to _back
         DLLNode<T> tmp = new DLLNode<T>(s, _back, null);
 
+        //No null elements shall be added to our deque
         if (s.equals(null)) {
           throw new NullPointerException();
         }
@@ -155,7 +160,7 @@ public class QQKachoo<T> implements Deque<T>{
         QQKachoo<String> q = new QQKachoo<String>();
 
         System.out.println("adding 1 to front: ");
-        q.addFirst("1");
+        q.addFirst(1);
         System.out.println(q);
        	System.out.println("adding 2 to back: ");
         q.addLast("2");
