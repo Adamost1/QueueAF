@@ -13,15 +13,21 @@ At first, we implemented this all without generic typing in order to incremental
 Adds a new node containing the T argument as its cargo to the front of the deque.
 If the list is empty, set the pointer variables (front & back) to the new node.
 Otherwise, insert the node, having it point backwards to front. Set front to point to the new node, then assign variable front to this new node.
-Throws a NullPointerException if asked to add a null element to the deque, in accordance with the API.
+Throws a NullPointerException if asked to add a null element to the deque, in accordance with the API. <br>
 Runtime: O(1)
 * ```void addLast(T s)```<br>
 Adds a new node containing the T argument as its cargo to the back of the deque.
 If the list is empty, set the pointer variables (front & back) to the new node.
 Otherwise, insert the node, having it point forwards to back. Set back to point to the new node, then assign variable back to this new node.
-Throws a NullPointerException if asked to add a null element to the deque, in accordance with the API.
+Throws a NullPointerException if asked to add a null element to the deque, in accordance with the API. <br>
 Runtime: O(1)
-* ```String pollFirst()```
+* ```String pollFirst()``` <br>
+Adds a new node containing the T argument as its cargo to the back of the deque.
+If the list is empty, set the pointer variables (front, back) to the new node.
+Otherwise, insert the node, having it point forwards to back. Set back to point backwards to this new node
+Then assign variable back to this new node.
+Throws a NullPointerException if asked to add a null element to the deque, in accordance with the api.<br>
+Runtime: O(1)
 * ```String pollLast()```
 * ```String peekFirst()```
 * ```String peekLast()```
