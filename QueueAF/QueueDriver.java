@@ -21,5 +21,9 @@ public class QueueDriver {
 
 	System.out.println("test1 contains o: " + test1.contains("o"));
 	System.out.println("test1 contains y: " + test1.contains("y"));
+
+	System.out.println(test1.pollFirst());
+	System.out.println(test1.pollLast());
+	
     }
 }
