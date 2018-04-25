@@ -4,6 +4,9 @@ APCS2 - pd08
 L #02: All Hands on Deque! (Not Schenectady; rather, synecdoche.)
 2018 - 04 - 18
 */
+
+import java.util.NoSuchElementException;
+
 public class QQKachoo<T> implements Deque<T>{
 
     private DLLNode<T> _front, _back;
@@ -89,7 +92,7 @@ public class QQKachoo<T> implements Deque<T>{
     * Runtime: O(1)
     */
     public T pollFirst(){ //[O(1) runtime]
-        _size --;
+
 
         if(isEmpty()){
             return null;
@@ -98,6 +101,7 @@ public class QQKachoo<T> implements Deque<T>{
         else{
             T retVal = _front.getCargo();
             _front = _front.getNext();
+            _size --;
             return retVal;
         }
     }
@@ -110,14 +114,53 @@ public class QQKachoo<T> implements Deque<T>{
     * Runtime: O(1)
     */
     public T pollLast(){
-        _size --;
-
         if(isEmpty()){
             return null;
         }
         else{
             T retVal = _back.getCargo();
             _back = _back.getPrev();
+            _size --;
+            return retVal;
+        }
+    }
+
+/*
+    * Removes and returns the contents of the first node, _front.
+    * If the list is empty, throw an exception
+    * Otherwise, remove the node, set _front to point to the next node in the deque.
+    *
+    * Runtime: O(1)
+    */
+    public T removeFirst(){ //[O(1) runtime]
+        if(isEmpty()){
+            throw new NoSuchElementException();
+        }
+
+        else{
+            T retVal = _front.getCargo();
+            _front = _front.getNext();
+            _size --;
+            return retVal;
+        }
+    }
+
+    /*
+    * Removes and returns the contents of the last node, _back.
+    * If the list is empty, throw an exception
+    * Otherwise, remove the node, set _back to point to the previous node in the deque.
+    *
+    * Runtime: O(1)
+    */
+    public T removeLast(){
+
+        if(isEmpty()){
+            throw new NoSuchElementException();
+        }
+        else{
+            T retVal = _back.getCargo();
+            _back = _back.getPrev();
+            _size --;
             return retVal;
         }
     }
@@ -218,16 +261,19 @@ public class QQKachoo<T> implements Deque<T>{
           if (temp.equals(_front)) {
             _front = temp.getNext();
             temp.getNext().setPrev(null);
+            _size --;
           }
 
           else if (temp.equals(_back)) {
             _back = temp.getPrev();
             temp.getPrev().setNext(null);
+            _size --;
           }
 
           else {
             temp.getNext().setPrev(temp.getPrev());
             temp.getPrev().setNext(temp.getNext());
+            _size --;
           }
 
           return true;
@@ -238,7 +284,7 @@ public class QQKachoo<T> implements Deque<T>{
           temp = temp.getNext();
         }
     }
-    _size --;
+
     return false;
     }
 
@@ -266,16 +312,19 @@ public class QQKachoo<T> implements Deque<T>{
           if (temp.equals(_front)) {
             _front = temp.getNext();
             temp.getNext().setPrev(null);
+            _size --;
           }
 
           else if (temp.equals(_back)) {
             _back = temp.getPrev();
             temp.getPrev().setNext(null);
+            _size --;
           }
 
           else {
             temp.getNext().setPrev(temp.getPrev());
             temp.getPrev().setNext(temp.getNext());
+            _size --;
           }
           break;
         }
@@ -284,7 +333,6 @@ public class QQKachoo<T> implements Deque<T>{
           temp = temp.getPrev();
         }
     }
-    _size --;
     return retVal;
     }
 
@@ -300,7 +348,8 @@ public class QQKachoo<T> implements Deque<T>{
         retStr += tmp.getCargo() + " <-> ";
         tmp = tmp.getNext();
       }
-      return retStr.substring(0, retStr.length() - 3) + "|| Back";
+
+      return retStr + "|| Back";
 
     }
 
@@ -325,7 +374,7 @@ public class QQKachoo<T> implements Deque<T>{
         q.addLast("2");
         System.out.println(q);
         System.out.println("Front value: " + q.peekFirst() + "\n" + "Back value: " + q.peekLast());
-
+        System.out.println("size: " + q.size());
       	System.out.println();
 
       	System.out.println(q);
@@ -340,20 +389,26 @@ public class QQKachoo<T> implements Deque<T>{
 
         System.out.println("removing First occurance: " + q.removeFirstOccurrence("2"));
         System.out.println(q);
+        System.out.println("size: " + q.size());
 
         System.out.println("removing Last occurance: " + q.removeLastOccurrence("100"));
         System.out.println(q);
+        System.out.println("size: " + q.size());
 
-        System.out.println( "polling first: " + q.pollFirst()) ;
+        System.out.println( "polling first: " + q.removeFirst()) ;
+        System.out.println(q);
+        System.out.println("size: " + q.size());
+
+        System.out.println( "polling first: " + q.removeFirst()) ;
+        System.out.println(q);
+        System.out.println("size: " + q.size());
+
+        System.out.println( "polling last: " + q.removeLast()) ;
+        System.out.println(q);
+        System.out.println("size: " + q.size());
+	   System.out.println( "polling last: " + q.removeLast()) ;
         System.out.println(q);
 
-        System.out.println( "polling first: " + q.pollFirst()) ;
-        System.out.println(q);
 
-        System.out.println( "polling last: " + q.pollLast()) ;
-        System.out.println(q);
-
-	      System.out.println( "polling last: " + q.pollLast()) ;
-        System.out.println(q);
       }
 }

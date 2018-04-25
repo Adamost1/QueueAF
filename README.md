@@ -68,3 +68,7 @@ Runtime: O(n)
 * added comments and descriptions of algorithms
 * eliminate repetitions in code
 * Enabled generic typing for Deque
+
+## Changes Made After getting Feedback and Reviewing Code
+* Added ```removeFirst()``` and ```removeLast()``` methods (and threw exceptions)
+* (This was not a piece of feedback) Fixed ```removeFirstOccurence()``` and ```removeLastOccurence()``` to decrement ```_size``` properly.
